@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Science / Data Analyst Assessment Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            background: #ffffff;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+        .email-box {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .email-box input {
+            padding: 10px;
+            width: 60%;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .question-card {
+            display: none;
+            margin-bottom: 20px;
+        }
+        .question-card.active {
+            display: block;
+        }
+        .question-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        .options label {
+            display: block;
+            background: #f9f9f9;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .options label:hover {
+            background: #f1f1f1;
+        }
+        .options input {
+            margin-right: 10px;
+        }
+        .buttons-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn-prev { background-color: #95a5a6; color: white; }
+        .btn-next { background-color: #3498db; color: white; }
+        .btn-clear { background-color: #e74c3c; color: white; }
+        .btn-submit { background-color: #2ecc71; color: white; display: none; }
+        button:hover { opacity: 0.9; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Technical Assessment - Data Science & Data Analyst</h2>
+    
+    <div class="email-box" id="emailSection">
+        <p>Please enter your details to start the test:</p>
+        <input type="text" id="candidateName" placeholder="Enter your full name" required><br>
+        <input type="email" id="candidateEmail" placeholder="Enter your email address" required>
+        <br><br>
+        <button type="button" class="btn-next" onclick="startTest()">Start Test</button>
+    </div>
+
+    <form id="quizForm" style="display:none;" onsubmit="submitQuiz(event)">
+        <!-- Question 1 -->
+        <div class="question-card active" data-q="0">
+            <div class="question-title">1. Which Python library is primarily used for data manipulation and analysis with DataFrames?</div>
+            <div class="options">
+                <label><input type="radio" name="q0" value="NumPy"> NumPy</label>
+                <label><input type="radio" name="q0" value="Pandas"> Pandas</label>
+                <label><input type="radio" name="q0" value="Matplotlib"> Matplotlib</label>
+                <label><input type="radio" name="q0" value="Flask"> Flask</label>
+            </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="question-card" data-q="1">
+            <div class="question-title">2. In SQL, which clause is used to filter records based on a specified condition?</div>
+            <div class="options">
+                <label><input type="radio" name="q1" value="GROUP BY"> GROUP BY</label>
+                <label><input type="radio" name="q1" value="ORDER BY"> ORDER BY</label>
+                <label><input type="radio" name="q1" value="WHERE"> WHERE</label>
+                <label><input type="radio" name="q1" value="HAVING"> HAVING</label>
+            </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="question-card" data-q="2">
+            <div class="question-title">3. What is the standard file extension for a Power BI Template file?</div>
+            <div class="options">
+                <label><input type="radio" name="q2" value=".pbix"> .pbix</label>
+                <label><input type="radio" name="q2" value=".pbit"> .pbit</label>
+                <label><input type="radio" name="q2" value=".xlsx"> .xlsx</label>
+                <label><input type="radio" name="q2" value=".csv"> .csv</label>
+            </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="question-card" data-q="3">
+            <div class="question-title">4. Which of the following is a classification algorithm rather than regression?</div>
+            <div class="options">
+                <label><input type="radio" name="q3" value="Linear Regression"> Linear Regression</label>
+                <label><input type="radio" name="q3" value="Logistic Regression"> Logistic Regression</label>
+                <label><input type="radio" name="q3" value="Ridge Regression"> Ridge Regression</label>
+                <label><input type="radio" name="q3" value="Lasso Regression"> Lasso Regression</label>
+            </div>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="question-card" data-q="4">
+            <div class="question-title">5. What does the abbreviation 'NumPy' stand for?</div>
+            <div class="options">
+                <label><input type="radio" name="q4" value="Number Python"> Number Python</label>
+                <label><input type="radio" name="q4" value="Numerical Python"> Numerical Python</label>
+                <label><input type="radio" name="q4" value="New Python"> New Python</label>
+                <label><input type="radio" name="q4" value="Nested Python"> Nested Python</label>
+            </div>
+        </div>
+
+        <!-- Question 6 -->
+        <div class="question-card" data-q="5">
+            <div class="question-title">6. Which chart type is best suited for showing trends over a continuous time interval?</div>
+            <div class="options">
+                <label><input type="radio" name="q5" value="Pie Chart"> Pie Chart</label>
+                <label><input type="radio" name="q5" value="Line Chart"> Line Chart</label>
+                <label><input type="radio" name="q5" value="Bar Chart"> Bar Chart</label>
+                <label><input type="radio" name="q5" value="Scatter Plot"> Scatter Plot</label>
+            </div>
+        </div>
+
+        <!-- Question 7 -->
+        <div class="question-card" data-q="6">
+            <div class="question-title">7. Which popular Python library provides efficient implementations of machine learning algorithms?</div>
+            <div class="options">
+                <label><input type="radio" name="q6" value="Scikit-Learn"> Scikit-Learn</label>
+                <label><input type="radio" name="q6" value="BeautifulSoup"> BeautifulSoup</label>
+                <label><input type="radio" name="q6" value="Requests"> Requests</label>
+                <label><input type="radio" name="q6" value="FastAPI"> FastAPI</label>
+            </div>
+        </div>
+
+        <!-- Question 8 -->
+        <div class="question-card" data-q="7">
+            <div class="question-title">8. Which function/lookup tool handles left-to-right lookup limitations in Excel?</div>
+            <div class="options">
+                <label><input type="radio" name="q7" value="VLOOKUP"> VLOOKUP</label>
+                <label><input type="radio" name="q7" value="HLOOKUP"> HLOOKUP</label>
+                <label><input type="radio" name="q7" value="XLOOKUP"> XLOOKUP</label>
+                <label><input type="radio" name="q7" value="Both VLOOKUP and XLOOKUP"> Both VLOOKUP and XLOOKUP</label>
+            </div>
+        </div>
+
+        <!-- Question 9 -->
+        <div class="question-card" data-q="8">
+            <div class="question-title">9. What matrix is used to evaluate the performance of a classification model?</div>
+            <div class="options">
+                <label><input type="radio" name="q8" value="Correlation Matrix"> Correlation Matrix</label>
+                <label><input type="radio" name="q8" value="Confusion Matrix"> Confusion Matrix</label>
+                <label><input type="radio" name="q8" value="Covariance Matrix"> Covariance Matrix</label>
+                <label><input type="radio" name="q8" value="Design Matrix"> Design Matrix</label>
+            </div>
+        </div>
+
+        <!-- Question 10 -->
+        <div class="question-card" data-q="9">
+            <div class="question-title">10. Which SQL join returns all records when there is a match in either left or right table?</div>
+            <div class="options">
+                <label><input type="radio" name="q9" value="INNER JOIN"> INNER JOIN</label>
+                <label><input type="radio" name="q9" value="LEFT JOIN"> LEFT JOIN</label>
+                <label><input type="radio" name="q9" value="FULL OUTER JOIN"> FULL OUTER JOIN</label>
+                <label><input type="radio" name="q9" value="RIGHT JOIN"> RIGHT JOIN</label>
+            </div>
+        </div>
+
+        <div class="buttons-group">
+            <button type="button" class="btn-prev" id="prevBtn" onclick="changeQuestion(-1)" style="display:none;">Previous</button>
+            <button type="button" class="btn-clear" onclick="clearSelection()">Clear Option</button>
+            <button type="button" class="btn-next" id="nextBtn" onclick="changeQuestion(1)">Next</button>
+            <button type="submit" class="btn-submit" id="submitBtn">Submit Assessment</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    let currentQuestion = 0;
+    const totalQuestions = 10;
+    // Updated to production webhook URL
+    const webhookUrl = "http://localhost:5678/webhook/submit-assessment";
+
+    function startTest() {
+        const name = document.getElementById("candidateName").value.trim();
+        const email = document.getElementById("candidateEmail").value.trim();
+        if(!name) {
+            alert("Please enter your name.");
+            return;
+        }
+        if(!email || !email.includes("@")) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+        document.getElementById("emailSection").style.display = "none";
+        document.getElementById("quizForm").style.display = "block";
+        showQuestion(currentQuestion);
+    }
+
+    function showQuestion(index) {
+        const cards = document.querySelectorAll(".question-card");
+        cards.forEach((card, i) => {
+            card.classList.toggle("active", i === index);
+        });
+
+        document.getElementById("prevBtn").style.display = index === 0 ? "none" : "inline-block";
+        if (index === totalQuestions - 1) {
+            document.getElementById("nextBtn").style.display = "none";
+            document.getElementById("submitBtn").style.display = "inline-block";
+        } else {
+            document.getElementById("nextBtn").style.display = "inline-block";
+            document.getElementById("submitBtn").style.display = "none";
+        }
+    }
+
+    function changeQuestion(direction) {
+        currentQuestion += direction;
+        if (currentQuestion < 0) currentQuestion = 0;
+        if (currentQuestion >= totalQuestions) currentQuestion = totalQuestions - 1;
+        showQuestion(currentQuestion);
+    }
+
+    function clearSelection() {
+        const currentCard = document.querySelector(`.question-card[data-q="${currentQuestion}"]`);
+        const radios = currentCard.querySelectorAll("input[type='radio']");
+        radios.forEach(radio => radio.checked = false);
+    }
+
+    function submitQuiz(event) {
+        event.preventDefault();
+        const name = document.getElementById("candidateName").value.trim();
+        const email = document.getElementById("candidateEmail").value.trim();
+        let answers = [];
+
+        for (let i = 0; i < totalQuestions; i++) {
+            const selected = document.querySelector(`input[name="q${i}"]:checked`);
+            answers.push(selected ? selected.value : null);
+        }
+
+        const payload = {
+            name: name,
+            email: email,
+            answers: answers
+        };
+
+        fetch(webhookUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(response => {
+            alert("Assessment submitted successfully! You can close this window.");
+            document.getElementById("quizForm").innerHTML = "<h3 style='text-align:center; color:#27ae60;'>Thank you! Your assessment has been submitted successfully.</h3>";
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("Failed to submit assessment. Please try again.");
+        });
+    }
+</script>
+
+</body>
+</html>
